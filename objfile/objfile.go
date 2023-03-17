@@ -103,35 +103,34 @@ func Open(name string) (*File, error) {
 // OpenReader opens .
 // The caller must call f.Close when the file is no longer needed.
 func OpenReader(reader io.ReaderAt) (*File, error) {
-	name := "temporary_file"
-	tmp_f, err := os.Create(name)
+	tmp_f, err := os.CreateTemp("", "temp_file-")
 	if err != nil {
 		return nil, err
 	}
+	defer tmp_f.Close()
+	defer os.Remove(tmp_f.Name())
 
 	data := make([]byte, 1024)
 	offset := 0
-	for {
+	endOfFile := false
+
+	for !endOfFile {
 		n, err := reader.ReadAt(data, int64(offset))
-		if err == io.EOF {
-			break
-		}
 		if err != nil {
-			return nil, err
+			if err == io.EOF {
+				endOfFile = true
+			} else {
+				return nil, err
+			}
 		}
 		if n > 0 {
 			tmp_f.WriteAt(data[:n], int64(offset))
 			offset += n
 		}
+
 	}
 
-	tmp_f.Close()
-	file, err := Open(name)
-
-	remove_err := os.Remove(name)
-	if remove_err != nil {
-		fmt.Println("can not remove file")
-	}
+	file, err := Open(tmp_f.Name())
 
 	return file, err
 }
