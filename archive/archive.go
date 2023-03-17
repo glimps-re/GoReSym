@@ -77,7 +77,7 @@ const (
 
 func (e *Entry) String() string {
 	return fmt.Sprintf("%s %6d/%-6d %12d %s %s",
-		(e.Mode & 0777).String(),
+		(e.Mode & 0o777).String(),
 		e.Uid,
 		e.Gid,
 		e.Size,

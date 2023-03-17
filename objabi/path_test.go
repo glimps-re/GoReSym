@@ -10,7 +10,8 @@ func TestPathToPrefix(t *testing.T) {
 	tests := []struct {
 		Path     string
 		Expected string
-	}{{"foo/bar/v1", "foo/bar/v1"},
+	}{
+		{"foo/bar/v1", "foo/bar/v1"},
 		{"foo/bar/v.1", "foo/bar/v%2e1"},
 		{"f.o.o/b.a.r/v1", "f.o.o/b.a.r/v1"},
 		{"f.o.o/b.a.r/v.1", "f.o.o/b.a.r/v%2e1"},

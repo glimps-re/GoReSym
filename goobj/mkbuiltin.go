@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build ignore
 // +build ignore
 
 // Generate builtinlist.go from cmd/compile/internal/gc/builtin/runtime.go.
@@ -43,7 +44,7 @@ func main() {
 	if *stdout {
 		_, err = os.Stdout.Write(out)
 	} else {
-		err = ioutil.WriteFile("builtinlist.go", out, 0666)
+		err = ioutil.WriteFile("builtinlist.go", out, 0o666)
 	}
 	if err != nil {
 		log.Fatal(err)
@@ -126,7 +127,8 @@ func enumerateBasicTypes() []extra {
 		"int32", "uint32", "int64", "uint64",
 		"float32", "float64", "complex64", "complex128",
 		"unsafe.Pointer", "uintptr", "bool", "string", "error",
-		"func(error) string"}
+		"func(error) string",
+	}
 	result := []extra{}
 	for _, n := range names {
 		result = append(result, extra{"type." + n, 0})

@@ -6,10 +6,12 @@ import (
 	"encoding/binary"
 )
 
-type size_t64 uint64
-type size_t32 uint32
-type pvoid64 uint64
-type pvoid32 uint32
+type (
+	size_t64 uint64
+	size_t32 uint32
+	pvoid64  uint64
+	pvoid32  uint32
+)
 
 // All types following this are the binary representation of internal objects.
 // These are 'flat', i.e. one pointer level deep. Access to pointers and such
@@ -811,9 +813,11 @@ func (d ChanDir) String() string {
 	return "Invalid"
 }
 
-type tflag uint8
-type nameOff int32
-type typeOff int32
+type (
+	tflag   uint8
+	nameOff int32
+	typeOff int32
+)
 
 type Rtype15_64 struct {
 	Size         size_t64

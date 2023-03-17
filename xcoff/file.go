@@ -267,7 +267,7 @@ func NewFile(r io.ReaderAt) (*File, error) {
 	}
 
 	// Symbol map needed by relocation
-	var idxToSym = make(map[int]*Symbol)
+	idxToSym := make(map[int]*Symbol)
 
 	// Read symbol table
 	if _, err := sr.Seek(int64(symptr), os.SEEK_SET); err != nil {
@@ -488,7 +488,7 @@ func (f *File) DWARF() (*dwarf.Data, error) {
 	// There are many other DWARF sections, but these
 	// are the ones the debug/dwarf package uses.
 	// Don't bother loading others.
-	var subtypes = [...]uint32{SSUBTYP_DWABREV, SSUBTYP_DWINFO, SSUBTYP_DWLINE, SSUBTYP_DWRNGES, SSUBTYP_DWSTR}
+	subtypes := [...]uint32{SSUBTYP_DWABREV, SSUBTYP_DWINFO, SSUBTYP_DWLINE, SSUBTYP_DWRNGES, SSUBTYP_DWSTR}
 	var dat [len(subtypes)][]byte
 	for i, subtype := range subtypes {
 		s := f.SectionByType(STYP_DWARF | subtype)

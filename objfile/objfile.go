@@ -281,7 +281,7 @@ func (e *Entry) ModuleDataTable(pclntabVA uint64, runtimeVersion string, version
 				var textsectmap []Textsect_64
 				for i := 0; i < int(module.Textsectmap.Len); i++ {
 					var textsect Textsect_64
-					var sectSize = uint64(unsafe.Sizeof(textsect))
+					sectSize := uint64(unsafe.Sizeof(textsect))
 					textsec_raw, err := e.raw.read_memory(uint64(module.Textsectmap.Data)+uint64(i)*sectSize, sectSize)
 					if err != nil {
 						continue
@@ -330,7 +330,7 @@ func (e *Entry) ModuleDataTable(pclntabVA uint64, runtimeVersion string, version
 				var textsectmap []Textsect_32
 				for i := 0; i < int(module.Textsectmap.Len); i++ {
 					var textsect Textsect_32
-					var sectSize = uint64(unsafe.Sizeof(textsect))
+					sectSize := uint64(unsafe.Sizeof(textsect))
 					textsec_raw, err := e.raw.read_memory(uint64(module.Textsectmap.Data)+uint64(i)*sectSize, sectSize)
 					if err != nil {
 						continue

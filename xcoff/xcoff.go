@@ -29,9 +29,10 @@ const (
 	FILHSZ_32 = 20
 	FILHSZ_64 = 24
 )
+
 const (
-	U802TOCMAGIC = 0737 // AIX 32-bit XCOFF
-	U64_TOCMAGIC = 0767 // AIX 64-bit XCOFF
+	U802TOCMAGIC = 0o737 // AIX 32-bit XCOFF
+	U64_TOCMAGIC = 0o767 // AIX 64-bit XCOFF
 )
 
 // Flags that describe the type of the object file.
@@ -91,6 +92,7 @@ const (
 	STYP_TYPCHK = 0x4000
 	STYP_OVRFLO = 0x8000
 )
+
 const (
 	SSUBTYP_DWINFO  = 0x10000 // DWARF info section
 	SSUBTYP_DWLINE  = 0x20000 // DWARF line-number section
@@ -132,7 +134,7 @@ const (
 	N_ABS   = -1
 	N_UNDEF = 0
 
-	//Ntype
+	// Ntype
 	SYM_V_INTERNAL  = 0x1000
 	SYM_V_HIDDEN    = 0x2000
 	SYM_V_PROTECTED = 0x3000

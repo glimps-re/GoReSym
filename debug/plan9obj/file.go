@@ -169,7 +169,7 @@ func NewFile(r io.ReaderAt) (*File, error) {
 		f.HdrSize += 8
 	}
 
-	var sects = []struct {
+	sects := []struct {
 		name string
 		size uint32
 	}{

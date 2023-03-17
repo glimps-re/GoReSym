@@ -616,7 +616,6 @@ func (f *File) DWARF() (*dwarf.Data, error) {
 		default:
 			return ""
 		}
-
 	}
 	sectionData := func(s *Section) ([]byte, error) {
 		b, err := s.Data()
@@ -645,7 +644,7 @@ func (f *File) DWARF() (*dwarf.Data, error) {
 	// There are many other DWARF sections, but these
 	// are the ones the debug/dwarf package uses.
 	// Don't bother loading others.
-	var dat = map[string][]byte{"abbrev": nil, "info": nil, "str": nil, "line": nil, "ranges": nil}
+	dat := map[string][]byte{"abbrev": nil, "info": nil, "str": nil, "line": nil, "ranges": nil}
 	for _, s := range f.Sections {
 		suffix := dwarfSuffix(s)
 		if suffix == "" {

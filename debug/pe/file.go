@@ -243,7 +243,6 @@ func (f *File) DWARF() (*dwarf.Data, error) {
 		default:
 			return ""
 		}
-
 	}
 
 	// sectionData gets the data for s and checks its size.
@@ -278,7 +277,7 @@ func (f *File) DWARF() (*dwarf.Data, error) {
 	// There are many other DWARF sections, but these
 	// are the ones the debug/dwarf package uses.
 	// Don't bother loading others.
-	var dat = map[string][]byte{"abbrev": nil, "info": nil, "str": nil, "line": nil, "ranges": nil}
+	dat := map[string][]byte{"abbrev": nil, "info": nil, "str": nil, "line": nil, "ranges": nil}
 	for _, s := range f.Sections {
 		suffix := dwarfSuffix(s)
 		if suffix == "" {
@@ -441,7 +440,7 @@ func (f *File) ImportedSymbols() ([]string, error) {
 				}
 				if va&0x80000000 > 0 { // is Ordinal
 					// TODO add dynimport ordinal support.
-					//ord := va&0x0000FFFF
+					// ord := va&0x0000FFFF
 				} else {
 					fn, _ := getString(names, int(va-ds.VirtualAddress+2))
 					all = append(all, fn+":"+dt.dll)
@@ -464,8 +463,7 @@ func (f *File) ImportedLibraries() ([]string, error) {
 
 // FormatError is unused.
 // The type is retained for compatibility.
-type FormatError struct {
-}
+type FormatError struct{}
 
 func (e *FormatError) Error() string {
 	return "unknown error"
@@ -503,7 +501,6 @@ func readOptionalHeader(r io.ReadSeeker, sz uint16) (interface{}, error) {
 
 	if !read(&ohMagic) {
 		return nil, fmt.Errorf("failure to read optional header magic: %v", err)
-
 	}
 
 	switch ohMagic {

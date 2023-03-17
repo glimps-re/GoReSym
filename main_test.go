@@ -1,4 +1,4 @@
-/*Copyright (C) 2022 Mandiant, Inc. All Rights Reserved.*/ 
+/*Copyright (C) 2022 Mandiant, Inc. All Rights Reserved.*/
 package main
 
 import (
@@ -8,8 +8,10 @@ import (
 	"testing"
 )
 
-var versions = []string{"117", "116", "115", "114", "113", "112", "111", "110", "19", "18", "17", "16", "15"}
-var fileNames = []string{"testproject_lin", "testproject_lin_32", "testproject_lin_stripped", "testproject_lin_stripped_32", "testproject_mac", "testproject_mac_stripped", "testproject_win_32.exe", "testproject_win_stripped_32.exe", "testproject_win_stripped.exe", "testproject_win.exe"}
+var (
+	versions  = []string{"117", "116", "115", "114", "113", "112", "111", "110", "19", "18", "17", "16", "15"}
+	fileNames = []string{"testproject_lin", "testproject_lin_32", "testproject_lin_stripped", "testproject_lin_stripped_32", "testproject_mac", "testproject_mac_stripped", "testproject_win_32.exe", "testproject_win_stripped_32.exe", "testproject_win_stripped.exe", "testproject_win.exe"}
+)
 
 func TestAllVersions(t *testing.T) {
 	workingDirectory, err := os.Getwd()

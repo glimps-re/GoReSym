@@ -168,7 +168,7 @@ func main_impl(fileName string, printStdPkgs bool, printFilePaths bool, printTyp
 		}
 	}
 
-	var knownGoTextBase = uint64(0)
+	knownGoTextBase := uint64(0)
 restartParseWithRealTextBase:
 	tabs, err := file.PCLineTable(versionOverride, knownGoTextBase)
 	if err != nil {

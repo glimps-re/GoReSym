@@ -32,7 +32,7 @@ import (
 
 // Disasm is a disassembler for a given File.
 type Disasm struct {
-	syms      []Sym            //symbols in file, sorted by address
+	syms      []Sym            // symbols in file, sorted by address
 	pcln      Liner            // pcln table
 	text      []byte           // bytes of text segment (actual instructions)
 	textStart uint64           // start PC of text
@@ -293,8 +293,10 @@ func (d *Disasm) Decode(start, end uint64, relocs []Reloc, gnuAsm bool, f func(p
 	}
 }
 
-type lookupFunc = func(addr uint64) (sym string, base uint64)
-type disasmFunc func(code []byte, pc uint64, lookup lookupFunc, ord binary.ByteOrder, _ bool) (text string, size int)
+type (
+	lookupFunc = func(addr uint64) (sym string, base uint64)
+	disasmFunc func(code []byte, pc uint64, lookup lookupFunc, ord binary.ByteOrder, _ bool) (text string, size int)
+)
 
 func disasm_386(code []byte, pc uint64, lookup lookupFunc, _ binary.ByteOrder, gnuAsm bool) (string, int) {
 	return disasm_x86(code, pc, lookup, 32, gnuAsm)

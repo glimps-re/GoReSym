@@ -73,8 +73,10 @@ func ReadELFNote(filename, name string, typ int32) ([]byte, error) {
 	return nil, nil
 }
 
-var elfGoNote = []byte("Go\x00\x00")
-var elfGNUNote = []byte("GNU\x00")
+var (
+	elfGoNote  = []byte("Go\x00\x00")
+	elfGNUNote = []byte("GNU\x00")
+)
 
 // The Go build ID is stored in a note described by an ELF PT_NOTE prog
 // header. The caller has already opened filename, to get f, and read

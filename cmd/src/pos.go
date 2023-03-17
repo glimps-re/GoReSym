@@ -214,8 +214,10 @@ func NewFileBase(filename, absFilename string) *PosBase {
 }
 
 // NewLinePragmaBase returns a new *PosBase for a line directive of the form
-//      //line filename:line:col
-//      /*line filename:line:col*/
+//
+//	//line filename:line:col
+//	/*line filename:line:col*/
+//
 // at position pos.
 func NewLinePragmaBase(pos Pos, filename, absFilename string, line, col uint) *PosBase {
 	return &PosBase{pos, filename, absFilename, FileSymPrefix + absFilename, line, col, -1}
@@ -337,6 +339,7 @@ const (
 	colShift    = xlogueBits + xlogueShift
 	lineShift   = colBits + colShift
 )
+
 const (
 	// It is expected that the front end or a phase in SSA will usually generate positions tagged with
 	// PosDefaultStmt, but note statement boundaries with PosIsStmt.  Simple statements will have a single
@@ -410,6 +413,7 @@ func (x lico) IsStmt() uint {
 	}
 	return uint(x) >> isStmtShift & isStmtMax
 }
+
 func (x lico) Xlogue() PosXlogue {
 	return PosXlogue(uint(x) >> xlogueShift & xlogueMax)
 }
